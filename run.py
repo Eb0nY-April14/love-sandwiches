@@ -31,4 +31,10 @@ sales = SHEET.worksheet('sales')
 data = sales.get_all_values()
 
 # This prints the content of the 'data' variable to the terminal.
+# It produces a list of lists. Each nested list contains a row
+# within our sales worksheet. The first row is our sandwich
+# headings & the second row is our first set of numbers from
+# the sales worksheet etc.
+# This shows that our API credentials are working & our Python
+# code is pulling data from our spreadsheet.
 print(data)
