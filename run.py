@@ -24,17 +24,46 @@ SHEET = GSPREAD_CLIENT.open('love_sandwiches-MS3')
 # use the worksheet method
 # of the sheet to call
 # our "sales" worksheet.
-sales = SHEET.worksheet('sales')
+# used to check if our API
+# is working correctly so
+# we comment it out since
+# it's not needed.
+# sales = SHEET.worksheet('sales')
 
 # Here, we declare another variable called 'data' and use the get_all_values()
 # of the gspread method to pull all the values from our sales worksheet.
-data = sales.get_all_values()
+# used to check if our API
+# is working correctly so
+# we comment it out since
+# it's not needed.
+# data = sales.get_all_values()
 
 # This prints the content of the 'data' variable to the terminal.
 # It produces a list of lists. Each nested list contains a row
-# within our sales worksheet. The first row is our sandwich
+# within our sales worksheet. The first row is our sandwich type
 # headings & the second row is our first set of numbers from
 # the sales worksheet etc.
 # This shows that our API credentials are working & our Python
 # code is pulling data from our spreadsheet.
-print(data)
+# used to check if our API
+# is working correctly so
+# we comment it out since
+# it's not needed.
+# print(data)
+
+
+def get_sales_data():
+    """
+    Get sales figure input from the user
+    """
+    print("Please enter sales data from the last market.")
+    print("Data should be six numbers, separated by commas.")
+    print("Example: 10, 20, 30, 40, 50, 60\n")
+
+# This below(data_str) is the user-entered
+# data which will be returned to us as a string.
+    data_str = input("Enter your data here: ")
+    print(f"The data provided is {data_str}")
+
+
+get_sales_data()
