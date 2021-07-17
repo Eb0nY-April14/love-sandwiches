@@ -141,7 +141,18 @@ def calculate_surplus_data(sales_row):
     # stock_row. It will retrieve the latest stock numbers from
     # the spreadsheet.
     stock_row = stock[-1]
-    print(stock_row)
+
+    # In Python list, a method called zip()
+    # allows us to loop through 2 or more lists
+    # at the same time.
+    surplus_data = []
+    for stock, sales in zip(stock_row, sales_row):
+        surplus = int(stock) - sales
+        surplus_data.append(surplus)
+
+    return surplus_data
+    # print(f"stock row: {stock_row}")
+    # print(f"sales row: {sales_row}")
     # pprint(stock)
 
 
@@ -150,10 +161,14 @@ def calculate_surplus_data(sales_row):
 # In Python, we wrap all our function calls inside function called main
 # as seen below.
 def main():
+    """
+    Run all program functions
+    """
     data = get_sales_data()
     sales_data = [int(num) for num in data]  # Converts our string data to list
     update_sales_worksheet(sales_data)
-    calculate_surplus_data(sales_data)
+    new_surplus_data = calculate_surplus_data(sales_data)
+    print(f"The New Surplus value is: {new_surplus_data}")
 
 
 print("Welcome to Love Sandwiches Data Automation")
