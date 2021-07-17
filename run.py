@@ -1,6 +1,7 @@
 # python code goes here
 import gspread
 from google.oauth2.service_account import Credentials
+from pprint import pprint
 
 # All the constants
 # written below from
@@ -124,8 +125,36 @@ def update_sales_worksheet(data):
     print("Sales worksheet updated successfully.\n")
 
 
+def calculate_surplus_data(sales_row):
+    """
+    Compare sales with stock and calculate the surplus for each item type.
+
+    The surplus is defined as the sales figure subtracted from the stock:
+    - Positive surplus indicates waste.
+    - Negative surplus indicates extra made when stock was sold out.
+    """
+    print("Calculating surplus data...\n")
+    stock = SHEET.worksheet("stock").get_all_values()
+    # The next line will access the last value in a Python list
+    # when the length of the list will vary. It will slice the
+    # last item of the list and store it in a variable called
+    # stock_row. It will retrieve the latest stock numbers from
+    # the spreadsheet.
+    stock_row = stock[-1]
+    print(stock_row)
+    # pprint(stock)
+
+
 # Returns the sales_data value from the get_sales_data() function
-# and stores it in a variable called data
-data = get_sales_data()
-sales_data = [int(num) for num in data]  # Converts our string data to list
-update_sales_worksheet(sales_data)
+# and stores it in a variable called data.
+# In Python, we wrap all our function calls inside function called main
+# as seen below.
+def main():
+    data = get_sales_data()
+    sales_data = [int(num) for num in data]  # Converts our string data to list
+    update_sales_worksheet(sales_data)
+    calculate_surplus_data(sales_data)
+
+
+print("Welcome to Love Sandwiches Data Automation")
+main()
