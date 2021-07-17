@@ -226,4 +226,4 @@ def main():
 print("Welcome to Love Sandwiches Data Automation")
 # main()
 
- = get_last_5_entries_sales()
+sales_columns = get_last_5_entries_sales()
