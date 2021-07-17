@@ -56,20 +56,26 @@ def get_sales_data():
     """
     Get sales figure input from the user
     """
-    print("Please enter sales data from the last market.")
-    print("Data should be six numbers, separated by commas.")
-    print("Example: 10, 20, 30, 40, 50, 60\n")
+    while True:
+        print("Please enter sales data from the last market.")
+        print("Data should be six numbers, separated by commas.")
+        print("Example: 10, 20, 30, 40, 50, 60\n")
 
 # This below(data_str) is the user-entered
 # data which will be returned to us as a string.
-    data_str = input("Enter your data here: ")
+        data_str = input("Enter your data here: ")
 
 # The split method is used to break up our data string at the commas.
 # It returns broken up values as a list.
 # Our values need to be in a list in order to be able to insert them
 # into our spreadsheet.
-    sales_data = data_str.split(",")
-    validate_data(sales_data)
+        sales_data = data_str.split(",")
+
+        if validate_data(sales_data):
+            print("Data is valid!")  # Prints this if true is returned
+            break  # This ends the while loop
+
+    return sales_data  # Returns the validated sales_data
     # print(sales_data)
     # The print statement below was used for testing purposes.
     # print(f"The data provided is {data_str}")
@@ -83,6 +89,10 @@ def validate_data(values):
     """
     # print(values)
     try:
+        # the first line of code below
+        # loops through all the values in
+        # the list & ensure that they are
+        # all integers
         [int(value) for value in values]
         if len(values) != 6:
             raise ValueError(
@@ -90,7 +100,12 @@ def validate_data(values):
             )
     except ValueError as e:
         print(f"Invalid data: {e}, please try again.\n")
-    # print(values)
+        return False  # returns false if an error is thrown
+        # print(values)
+
+    return True  # returns true if no error
 
 
-get_sales_data()
+# Returns the sales_data value from the get_sales_data() function
+# and stores it in a variable called data
+data = get_sales_data()
