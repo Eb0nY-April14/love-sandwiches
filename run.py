@@ -1,7 +1,7 @@
 # python code goes here
 import gspread
 from google.oauth2.service_account import Credentials
-from pprint import pprint
+# from pprint import pprint # Used for testing purpose
 
 # All the constants
 # written below from
@@ -67,7 +67,7 @@ def get_sales_data():
 
 # This below(data_str) is the user-entered
 # data which will be returned to us as a string.
-        data_str = input("Enter your data here: ")
+        data_str = input("Enter your data here:\n")
 
 # The split method is used to break up our data string at the commas.
 # It returns broken up values as a list.
